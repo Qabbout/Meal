@@ -12,32 +12,24 @@ class MyApp extends StatelessWidget {
       title: 'Meal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.lightGreenAccent,
+        canvasColor: Color.fromRGBO(229, 228, 224, 1.0),
+        textTheme: ThemeData.light().textTheme.copyWith(
+              bodyText1: TextStyle(
+                color: Color.fromRGBO(49, 49, 49, 1.0),
+              ),
+              bodyText2: TextStyle(
+                color: Color.fromRGBO(49, 49, 49, 1.0),
+              ),
+              headline6: TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
-      home: MyHomePage(title: 'Meal'),
+      home: CategoriesScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: CategoriesScreen(),
-        ));
   }
 }
