@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal/models/meal.dart';
-import 'package:meal/widgets/meal_details.dart';
+import 'package:meal/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
   final String id;
@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
   final Complexity complexity;
   final int duration;
+  final Function removeItem;
 
   const MealItem({
     required this.id,
@@ -17,12 +18,19 @@ class MealItem extends StatelessWidget {
     required this.affordability,
     required this.complexity,
     required this.duration,
+    required this.removeItem,
   });
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context)
+        .pushNamed(
       MealDetail.routeName,
       arguments: id,
+    )
+        .then(
+      (result) {
+        if (result != null) removeItem(result);
+      },
     );
   }
 
