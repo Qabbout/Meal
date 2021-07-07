@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal/screens/category_meals_screen.dart';
 import 'package:meal/screens/filters_screen.dart';
 import 'package:meal/screens/tabs_screen.dart';
-import 'package:meal/widgets/meal_details.dart';
+import 'package:meal/screens/meal_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
