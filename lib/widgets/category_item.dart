@@ -12,9 +12,9 @@ class CategoryItem extends StatelessWidget {
     Navigator.of(ctx).pushNamed(
       CategoryMealsScreen.routeName,
       arguments: {
-        id: id,
-        title: title,
-        color: color,
+        "id": id,
+        "title": title,
+        "color": color,
       },
     );
   }
