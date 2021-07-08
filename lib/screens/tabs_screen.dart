@@ -11,11 +11,11 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   final List<Map<String, dynamic>> _pages = [
     {
-      'page': CategoriesScreen,
+      'page': CategoriesScreen(),
       'label': 'Categories',
     },
     {
-      'page': FavoritesScreen,
+      'page': FavoritesScreen(),
       'label': 'Favorites',
     }
   ];
