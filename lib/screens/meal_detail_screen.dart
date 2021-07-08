@@ -46,7 +46,7 @@ class MealDetail extends StatelessWidget {
         child: Icon(
           isMealFavorite(mealId) ? Icons.star : Icons.star_border,
         ),
-        onPressed: () => _toggleFavorite,
+        onPressed: () => _toggleFavorite(mealId),
       ),
       body: SingleChildScrollView(
         child: Column(
