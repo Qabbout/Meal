@@ -6,21 +6,21 @@ class MainDrawer extends StatelessWidget {
     // required BuildContext context,
     required IconData icon,
     required String title,
-    required Function onTap,
+    required VoidCallback onTap,
   }) {
     return ListTile(
       leading: Icon(
-        Icons.restaurant,
+        icon,
         size: 26,
       ),
       title: Text(
-        "Meal",
+        "$title",
         style: TextStyle(
             fontSize: 24,
             fontFamily: 'RobotoCendensed',
             fontWeight: FontWeight.bold),
       ),
-      onTap: onTap(),
+      onTap: onTap,
     );
   }
 
@@ -30,7 +30,8 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: 120,
+            height: 200,
+            alignment: Alignment.center,
             width: double.infinity,
             padding: EdgeInsets.all(20),
             color: Theme.of(context).accentColor,
