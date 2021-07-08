@@ -9,7 +9,6 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
   final Complexity complexity;
   final int duration;
-  final Function? removeItem;
 
   const MealItem({
     required this.id,
@@ -18,7 +17,6 @@ class MealItem extends StatelessWidget {
     required this.affordability,
     required this.complexity,
     required this.duration,
-    this.removeItem,
   });
 
   void selectMeal(BuildContext context) {
@@ -29,7 +27,7 @@ class MealItem extends StatelessWidget {
     )
         .then(
       (result) {
-        if (result != null) removeItem!(result);
+        // if (result != null) removeItem!(result);
       },
     );
   }
