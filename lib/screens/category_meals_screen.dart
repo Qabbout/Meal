@@ -38,7 +38,8 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: ListView.builder(
+      body: categoryMeals.length > 0
+          ? ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
             id: categoryMeals[index].id,
@@ -50,7 +51,10 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
           );
         },
         itemCount: categoryMeals.length,
-      ),
+      )
+          : Center(
+              child: Text("No Meals Found"),
+            ),
     );
   }
 }
