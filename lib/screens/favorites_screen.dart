@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meal/models/meal.dart';
+import 'package:meal/providers/meal_provider.dart';
 import 'package:meal/widgets/meal_item.dart';
+import 'package:provider/provider.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  final List<Meal> _favoritesMeals;
-
-  const FavoritesScreen(this._favoritesMeals);
-
   @override
   Widget build(BuildContext context) {
+    final List<Meal> _favoritesMeals =
+        Provider.of<MealProvider>(context, listen: true).favoritesMeals;
     if (_favoritesMeals.isEmpty)
       return Center(
-
         child: SizedBox(
           width: MediaQuery.of(context).size.width / 1.5,
           child: Text(

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:meal/providers/meal_provider.dart';
 import 'package:meal/widgets/main_drawer.dart';
+import 'package:provider/provider.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = 'filters_screen';
-  final Function setFilters;
-  final Map<String, bool> currentFilters;
-
-  FiltersScreen(this.currentFilters, this.setFilters);
+  
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -20,10 +19,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
   
   @override
   void initState() {
-    _glutenFree = widget.currentFilters['gluten']!;
-    _vegan = widget.currentFilters['vegan']!;
-    _vegetarian = widget.currentFilters['vegeterian']!;
-    _lactoseFree = widget.currentFilters['lactose']!;
+    final Map<String, bool> currentFilters =
+        Provider.of<MealProvider>(context).filters;
+
+    _glutenFree = currentFilters['gluten']!;
+    _vegan = currentFilters['vegan']!;
+    _vegetarian = currentFilters['vegeterian']!;
+    _lactoseFree = currentFilters['lactose']!;
     super.initState();
   }
 
@@ -43,6 +45,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Filters"),
@@ -56,7 +59,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 'vegeterian': _vegetarian,
               };
 
-              widget.setFilters(selectedFilters);
+              Provider.of<MealProvider>(context, listen: false)
+                  .setFilters(selectedFilters);
             },
             icon: Icon(
               Icons.done,
