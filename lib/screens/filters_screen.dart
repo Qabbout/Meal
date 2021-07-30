@@ -20,7 +20,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     final Map<String, bool> currentFilters =
-        Provider.of<MealProvider>(context).filters;
+        Provider.of<MealProvider>(
+      context,
+      listen: false,
+    ).filters;
 
     _glutenFree = currentFilters['gluten']!;
     _vegan = currentFilters['vegan']!;
