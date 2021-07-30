@@ -18,8 +18,7 @@ class MealProvider with ChangeNotifier {
     return favoritesMeals.any((meal) => meal.id == mealId);
   }
 
-  void setFilters(Map<String, bool> _filterData) {
-    filters = _filterData;
+  void setFilters() {
 
     availableMeals = DUMMY_MEALS.where((meal) {
       if (filters['gluten']! && !meal.isGlutenFree) return false;
