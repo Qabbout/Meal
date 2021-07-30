@@ -53,7 +53,10 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
         itemCount: categoryMeals.length,
       )
           : Center(
-              child: Text("No Meals Found"),
+              child: Text(
+                "No Meals Found",
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
     );
   }
