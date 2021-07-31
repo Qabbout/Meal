@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:meal/providers/meal_provider.dart';
 import 'package:meal/screens/categories_screen.dart';
 import 'package:meal/screens/favorites_screen.dart';
@@ -52,7 +53,9 @@ class _TabsScreenState extends State<TabsScreen> {
         onTap: (val) => _selectPage(val),
         backgroundColor: Theme.of(context).primaryColor,
         selectedItemColor: Theme.of(context).accentColor,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: useWhiteForeground(Theme.of(context).primaryColor)
+            ? Colors.white
+            : Colors.black,
         currentIndex: _selectedPageIndex,
         items: [
           BottomNavigationBarItem(
