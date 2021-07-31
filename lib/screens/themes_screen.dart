@@ -109,6 +109,17 @@ class ThemesScreen extends StatelessWidget {
                   text: "Dark Theme"),
               buildListTile(context, "primary"),
               buildListTile(context, "accent"),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Provider.of<ThemeProvider>(context, listen: false)
+                        .resetThemeToDefault();
+                  },
+                  child: Text("Reset to default"),
+                ),
+              ),
             ],
           ))
         ],

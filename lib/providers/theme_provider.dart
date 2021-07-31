@@ -19,6 +19,12 @@ class ThemeProvider extends ChangeNotifier {
     prefs.setInt("accentColor", accentColor.value);
   }
 
+  resetThemeToDefault() {
+    primaryColor = Colors.deepPurple;
+    accentColor = Colors.lightGreenAccent;
+    notifyListeners();
+  }
+
   getThemeColors() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     primaryColor = _toMaterialColor(prefs.getInt("primaryColor") ?? 0xFF673AB7);
