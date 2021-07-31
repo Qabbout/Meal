@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:meal/providers/meal_provider.dart';
+import 'package:meal/providers/theme_provider.dart';
 import 'package:meal/screens/categories_screen.dart';
 import 'package:meal/screens/favorites_screen.dart';
 import 'package:meal/widgets/main_drawer.dart';
@@ -17,6 +18,7 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   void initState() {
     Provider.of<MealProvider>(context, listen: false).setData();
+    Provider.of<ThemeProvider>(context, listen: false).getThemeMode();
     
     _pages = [
       {

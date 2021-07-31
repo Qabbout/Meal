@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
   var primaryColor = Colors.deepPurple;
   var accentColor = Colors.lightGreenAccent;
 
   var themeMode = ThemeMode.system;
+  String themeText = 's';
 
   onChanged(color, n) async {
     n == 1
@@ -43,8 +45,33 @@ class ThemeProvider extends ChangeNotifier {
     );
   }
 
-  void thmeModeChanged(newThemVal) {
+  void thmeModeChanged(newThemVal) async {
     themeMode = newThemVal;
+    _getThemeText(themeMode);
+    notifyListeners();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("themeText", themeText);
+  }
+
+  _getThemeText(ThemeMode themeMode) {
+    if (themeMode == ThemeMode.dark)
+      themeText = 'd';
+    else if (themeMode == ThemeMode.light)
+      themeText = 'l';
+    else
+      themeText = 's';
+  }
+
+  getThemeMode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    themeText = prefs.getString("themeText") ?? "s";
+    if (themeText == 'd')
+      themeMode = ThemeMode.dark;
+    else if (themeText == 'l')
+      themeMode = ThemeMode.light;
+    else
+      themeMode = ThemeMode.system;
     notifyListeners();
   }
 }
