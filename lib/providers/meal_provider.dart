@@ -40,10 +40,20 @@ class MealProvider with ChangeNotifier {
     filters['lactose'] = prefs.getBool("lactose") ?? false;
     filters['vegan'] = prefs.getBool("vegan") ?? false;
     filters['vegeterian'] = prefs.getBool("vegeterian") ?? false;
+
+    List<String> prefsMealId = prefs.getStringList("prefsMealId") ?? [];
+    for (var mealId in prefsMealId) {
+      favoritesMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+    }
+
+
     notifyListeners();
   }
 
-  void toggleFavorite(String mealId) {
+  void toggleFavorite(String mealId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> prefsMealId = [];
+
     final existingIndex =
         favoritesMeals.indexWhere((meal) => meal.id == mealId);
 
@@ -51,7 +61,9 @@ class MealProvider with ChangeNotifier {
       favoritesMeals.removeAt(existingIndex);
     } else {
       favoritesMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      prefsMealId.add(mealId);
     }
     notifyListeners();
+    prefs.setStringList("prefsMealId", prefsMealId);
   }
 }
