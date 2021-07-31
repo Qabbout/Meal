@@ -17,7 +17,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   void initState() {
-    Provider.of<MealProvider>(context, listen: false).setData();
+    Provider.of<MealProvider>(context, listen: false).getData();
     Provider.of<ThemeProvider>(context, listen: false).getThemeMode();
     Provider.of<ThemeProvider>(context, listen: false).getThemeColors();
     

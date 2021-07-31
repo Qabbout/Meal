@@ -35,7 +35,7 @@ class MealProvider with ChangeNotifier {
     prefs.setBool("vegeterian", filters['vegeterian']!);
   }
 
-  void setData() async {
+  void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     filters['gluten'] = prefs.getBool("gluten") ?? false;
     filters['lactose'] = prefs.getBool("lactose") ?? false;
