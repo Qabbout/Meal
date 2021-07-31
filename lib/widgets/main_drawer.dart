@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal/screens/filters_screen.dart';
+import 'package:meal/screens/themes_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile({
@@ -58,6 +59,7 @@ class MainDrawer extends StatelessWidget {
             },
             context: context
           ),
+          
           buildListTile(
             context: context,
               icon: Icons.settings,
@@ -66,6 +68,15 @@ class MainDrawer extends StatelessWidget {
                 Navigator.of(context)
                     .pushReplacementNamed(FiltersScreen.routeName);
               }),
+              buildListTile(
+              context: context,
+              icon: Icons.color_lens,
+              title: "Themes",
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(ThemesScreen.routeName);
+              }),
+              
               
         ],
       ),
