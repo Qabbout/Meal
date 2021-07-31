@@ -96,7 +96,12 @@ class MealDetail extends StatelessWidget {
                                   Theme.of(context).textTheme.bodyText1?.color),
                         ),
                         leading: CircleAvatar(
-                          child: Text("#${index + 1}"),
+                          
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: Text("#${index + 1}",
+                              style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                              )),
                         ),
                       ),
                       Divider()
