@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal/providers/meal_provider.dart';
+import 'package:meal/providers/theme_provider.dart';
 import 'package:meal/widgets/main_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
       onChanged: updateValue,
       title: Text("$title"),
       subtitle: Text("$description"),
+      inactiveTrackColor:
+          Provider.of<ThemeProvider>(context).themeMode == ThemeMode.light
+              ? null
+              : Colors.black,
     );
   }
 
