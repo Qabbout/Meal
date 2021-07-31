@@ -96,7 +96,7 @@ class ThemesScreen extends StatelessWidget {
                   context: context,
                   themeMode: ThemeMode.system,
                   icon: null,
-                  text: "System Default Theme"),
+                  text: "System Theme"),
               builRadioListTile(
                   context: context,
                   themeMode: ThemeMode.light,
