@@ -13,6 +13,17 @@ class ThemeProvider extends ChangeNotifier {
         ? primaryColor = _toMaterialColor(color.hashCode)
         : accentColor = _toMaterialAccentColor(color.hashCode);
     notifyListeners();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt("primaryColor", primaryColor.value);
+    prefs.setInt("accentColor", accentColor.value);
+  }
+
+  getThemeColors() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    primaryColor = _toMaterialColor(prefs.getInt("primaryColor") ?? 0xFF673AB7);
+    accentColor =
+        _toMaterialAccentColor(prefs.getInt("accentColor") ?? 0xFFB2FF59);
   }
 
   MaterialColor _toMaterialColor(colorVal) {
@@ -45,7 +56,7 @@ class ThemeProvider extends ChangeNotifier {
     );
   }
 
-  void thmeModeChanged(newThemVal) async {
+  void themeModeChanged(newThemVal) async {
     themeMode = newThemVal;
     _getThemeText(themeMode);
     notifyListeners();

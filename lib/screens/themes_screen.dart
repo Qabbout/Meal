@@ -17,7 +17,7 @@ class ThemesScreen extends StatelessWidget {
       value: themeMode,
       onChanged: (newThemeVal) => {
         Provider.of<ThemeProvider>(context, listen: false)
-            .thmeModeChanged(newThemeVal)
+            .themeModeChanged(newThemeVal)
       },
       secondary: Icon(
         icon,

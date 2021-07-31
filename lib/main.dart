@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
         accentColor: accentColor,
-        // canvasColor: Color.fromRGBO(229, 228, 224, 1.0),
         canvasColor: Color.fromRGBO(255, 254, 229, 1.0),
         fontFamily: 'Raleway',
         buttonColor: Color.fromRGBO(20, 50, 50, 1),
