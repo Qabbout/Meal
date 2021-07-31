@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal/models/meal.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../dummy_data.dart';
 
 class MealProvider with ChangeNotifier {
@@ -18,8 +18,7 @@ class MealProvider with ChangeNotifier {
     return favoritesMeals.any((meal) => meal.id == mealId);
   }
 
-  void setFilters() {
-
+  void setFilters() async {
     availableMeals = DUMMY_MEALS.where((meal) {
       if (filters['gluten']! && !meal.isGlutenFree) return false;
       if (filters['lactose']! && !meal.isLactoseFree) return false;
@@ -27,6 +26,20 @@ class MealProvider with ChangeNotifier {
       if (filters['vegeterian']! && !meal.isVegetarian) return false;
       return true;
     }).toList();
+    notifyListeners();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("gluten", filters['gluten']!);
+    prefs.setBool("lactose", filters['lactose']!);
+    prefs.setBool("vegan", filters['vegan']!);
+    prefs.setBool("vegeterian", filters['vegeterian']!);
+  }
+
+  void setData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    filters['gluten'] = prefs.getBool("gluten") ?? false;
+    filters['lactose'] = prefs.getBool("lactose") ?? false;
+    filters['vegan'] = prefs.getBool("vegan") ?? false;
+    filters['vegeterian'] = prefs.getBool("vegeterian") ?? false;
     notifyListeners();
   }
 
