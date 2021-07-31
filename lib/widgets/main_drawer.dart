@@ -7,11 +7,13 @@ class MainDrawer extends StatelessWidget {
     required IconData icon,
     required String title,
     required VoidCallback onTap,
+    required BuildContext context,
   }) {
     return ListTile(
       leading: Icon(
         icon,
         size: 26,
+        color: Theme.of(context).buttonColor,
       ),
       title: Text(
         "$title",
@@ -27,6 +29,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 0,
       child: Column(
         children: <Widget>[
           Container(
@@ -53,14 +56,17 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
             },
+            context: context
           ),
           buildListTile(
+            context: context,
               icon: Icons.settings,
               title: "Filters",
               onTap: () {
                 Navigator.of(context)
                     .pushReplacementNamed(FiltersScreen.routeName);
               }),
+              
         ],
       ),
     );

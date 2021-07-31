@@ -36,6 +36,7 @@ class MealDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context)?.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+    var accentColor = Theme.of(context).accentColor;
 
     return Scaffold(
       appBar: AppBar(
@@ -67,12 +68,13 @@ class MealDetail extends StatelessWidget {
                 itemCount: selectedMeal.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
-                    color: Theme.of(context).accentColor,
+                    color: accentColor,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 10),
                       child: Text(
                         selectedMeal.ingredients[index],
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   );
@@ -87,7 +89,12 @@ class MealDetail extends StatelessWidget {
                   return Column(
                     children: [
                       ListTile(
-                        title: Text(selectedMeal.steps[index]),
+                        title: Text(
+                          selectedMeal.steps[index],
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText1?.color),
+                        ),
                         leading: CircleAvatar(
                           child: Text("#${index + 1}"),
                         ),

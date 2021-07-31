@@ -114,7 +114,10 @@ class MealItem extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Icon(Icons.schedule),
+                      Icon(
+                        Icons.schedule,
+                        color: Theme.of(context).buttonColor,
+                      ),
                       SizedBox(
                         width: 6,
                       ),
@@ -123,7 +126,10 @@ class MealItem extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget>[
-                      Icon(Icons.work),
+                      Icon(
+                        Icons.work,
+                        color: Theme.of(context).buttonColor,
+                      ),
                       SizedBox(
                         width: 6,
                       ),
@@ -132,7 +138,10 @@ class MealItem extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget>[
-                      Icon(Icons.attach_money),
+                      Icon(
+                        Icons.attach_money,
+                        color: Theme.of(context).buttonColor,
+                      ),
                       SizedBox(
                         width: 6,
                       ),
