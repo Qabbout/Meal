@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:meal/providers/meal_provider.dart';
 import 'package:meal/screens/categories_screen.dart';
 import 'package:meal/screens/favorites_screen.dart';
 import 'package:meal/widgets/main_drawer.dart';
+import 'package:provider/provider.dart';
 
 class TabsScreen extends StatefulWidget {
-
-
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -15,16 +15,18 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   void initState() {
+    Provider.of<MealProvider>(context, listen: false).setData();
+    
     _pages = [
-    {
-      'page': CategoriesScreen(),
-      'label': 'Categories',
-    },
-    {
-      'page': FavoritesScreen(),
-      'label': 'Favorites',
-    }
-  ];
+      {
+        'page': CategoriesScreen(),
+        'label': 'Categories',
+      },
+      {
+        'page': FavoritesScreen(),
+        'label': 'Favorites',
+      }
+    ];
     super.initState();
   }
 
