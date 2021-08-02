@@ -42,68 +42,66 @@ class _FiltersScreenState extends State<FiltersScreen> {
      
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Your Filters"),
-         ),
-      body: Column(
-        children: <Widget>[
-          Container(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            title: Text("Your Filters"),
+          ),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            Container(
             padding: EdgeInsets.all(20),
             child: Text(
               "Adjust your mail selection",
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                builSwitchListTile(
-                    title: "Gluten Free",
-                    description: "Only include gluten free meals",
-                    currentValue: currentFilters['gluten']!,
-                    updateValue: (newVal) {
-                        currentFilters['gluten'] = newVal;
-                      Provider.of<MealProvider>(
-                        context,
-                        listen: false,
-                      ).setFilters();
-                    }),
-                builSwitchListTile(
-                    title: "Lactose Free",
-                    description: "Only include lactose free meals",
-                    currentValue: currentFilters['lactose']!,
-                    updateValue: (newVal) {
-                        currentFilters['lactose'] = newVal;
-                      Provider.of<MealProvider>(
-                        context,
-                        listen: false,
-                      ).setFilters();
-                    }),
-                builSwitchListTile(
-                    title: "Vegan",
-                    description: "Only include Vegan meals",
-                    currentValue: currentFilters['vegan']!,
-                    updateValue: (newVal) {
-                        currentFilters['vegan'] = newVal;
-                      Provider.of<MealProvider>(
-                        context,
-                        listen: false,
-                      ).setFilters();
-                    }),
-                builSwitchListTile(
-                    title: "Vegeterian",
-                    description: "Only include vegeterian meals",
-                    currentValue: currentFilters['vegeterian']!,
-                    updateValue: (newVal) {
-                        currentFilters['vegeterian'] = newVal;
-                      Provider.of<MealProvider>(
-                        context,
-                        listen: false,
-                      ).setFilters();
-                    }),
-              ],
-            ),
-          )
+          builSwitchListTile(
+                title: "Gluten Free",
+                description: "Only include gluten free meals",
+                currentValue: currentFilters['gluten']!,
+                updateValue: (newVal) {
+                  currentFilters['gluten'] = newVal;
+                  Provider.of<MealProvider>(
+                    context,
+                    listen: false,
+                  ).setFilters();
+                }),
+            builSwitchListTile(
+                title: "Lactose Free",
+                description: "Only include lactose free meals",
+                currentValue: currentFilters['lactose']!,
+                updateValue: (newVal) {
+                  currentFilters['lactose'] = newVal;
+                  Provider.of<MealProvider>(
+                    context,
+                    listen: false,
+                  ).setFilters();
+                }),
+            builSwitchListTile(
+                title: "Vegan",
+                description: "Only include Vegan meals",
+                currentValue: currentFilters['vegan']!,
+                updateValue: (newVal) {
+                  currentFilters['vegan'] = newVal;
+                  Provider.of<MealProvider>(
+                    context,
+                    listen: false,
+                  ).setFilters();
+                }),
+            builSwitchListTile(
+                title: "Vegeterian",
+                description: "Only include vegeterian meals",
+                currentValue: currentFilters['vegeterian']!,
+                updateValue: (newVal) {
+                  currentFilters['vegeterian'] = newVal;
+                  Provider.of<MealProvider>(
+                    context,
+                    listen: false,
+                  ).setFilters();
+              })
+          ])),
         ],
       ),
       drawer: MainDrawer(),
