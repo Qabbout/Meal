@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meal/dummy_data.dart';
+import 'package:meal/providers/meal_provider.dart';
 import 'package:meal/widgets/category_item.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
 
@@ -16,7 +17,8 @@ class CategoriesScreen extends StatelessWidget {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
           ),
-          children: DUMMY_CATEGORIES
+          children: Provider.of<MealProvider>(context)
+              .availableCategories
               .map((categoryData) => CategoryItem(
                   categoryData.id, categoryData.title, categoryData.color))
               .toList(),

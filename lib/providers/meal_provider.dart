@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal/models/category.dart';
 import 'package:meal/models/meal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../dummy_data.dart';
@@ -14,6 +15,7 @@ class MealProvider with ChangeNotifier {
   List<Meal> availableMeals = DUMMY_MEALS;
   List<Meal> favoritesMeals = [];
   List<String> prefsMealId = [];
+  List<Category> availableCategories = DUMMY_CATEGORIES;
 
   bool isMealFavorite(String mealId) {
     return favoritesMeals.any((meal) => meal.id == mealId);
@@ -27,6 +29,26 @@ class MealProvider with ChangeNotifier {
       if (filters['vegeterian']! && !meal.isVegetarian) return false;
       return true;
     }).toList();
+
+    List<Category> ac = [];
+    availableMeals.forEach(
+      (meal) {
+        meal.categories.forEach(
+          (categoryId) {
+            DUMMY_CATEGORIES.forEach(
+              (category) {
+                if (categoryId == category.id) {
+                  if (!ac.any((category) => category.id == categoryId))
+                    ac.add(category);
+                }
+              },
+            );
+          },
+        );
+      },
+    );
+    availableCategories = ac;
+
     notifyListeners();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("gluten", filters['gluten']!);
