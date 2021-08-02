@@ -79,14 +79,17 @@ class MealItem extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: id,
-                    child: Image.network(
-                      imageUrl,
-                      height: 200,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+                    child: InteractiveViewer(
+                      child: FadeInImage.assetNetwork(
+                        image: imageUrl,
+                          placeholder: 'assets/loading.gif',
+                          height: 200,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
+                  ),
                 Positioned(
                   bottom: 20,
                   right: 10,

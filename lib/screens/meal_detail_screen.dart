@@ -13,6 +13,7 @@ class MealDetail extends StatelessWidget {
       child: Text(
         title,
         style: Theme.of(context).textTheme.headline6,
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -47,6 +48,7 @@ class MealDetail extends StatelessWidget {
         MediaQuery.of(context).orientation == Orientation.landscape;
 
 var lvIngredients = ListView.builder(
+  padding: EdgeInsets.all(0),
                 itemCount: selectedMeal.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
@@ -64,6 +66,7 @@ var lvIngredients = ListView.builder(
               );
 
     var lvSteps = ListView.builder(
+      padding: EdgeInsets.all(0),
                 itemCount: selectedMeal.steps.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
@@ -91,9 +94,6 @@ var lvIngredients = ListView.builder(
               );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(selectedMeal.title),
-      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Provider.of<MealProvider>(context).isMealFavorite(mealId)
@@ -103,20 +103,29 @@ var lvIngredients = ListView.builder(
         onPressed: () => Provider.of<MealProvider>(context, listen: false)
             .toggleFavorite(mealId),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: Hero(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(selectedMeal.title),
+              background: Hero(
                 tag: mealId,
-                child: Image.network(
-                  selectedMeal.imageUrl,
-                  fit: BoxFit.cover,
+                child: InteractiveViewer(
+                  child: FadeInImage.assetNetwork(
+                    image: selectedMeal.imageUrl,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    placeholder: '/assets/loading.gif',
+                  ),
                 ),
               ),
             ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
             if (isLandscape)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -141,8 +150,10 @@ var lvIngredients = ListView.builder(
             if (!isLandscape) buildSectionTitle(context, "Steps"),
             if (!isLandscape) buildContainer(child: lvSteps, context: context),
            
-          ],
-        ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
