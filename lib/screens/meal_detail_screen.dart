@@ -17,18 +17,24 @@ class MealDetail extends StatelessWidget {
     );
   }
 
-  Widget buildContainer({required Widget child}) {
+  Widget buildContainer(
+      {required Widget child, required BuildContext context}) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Container(
         decoration: BoxDecoration(
+          color: Colors.white70,
           border: Border.all(
             color: Colors.grey,
           ),
           borderRadius: BorderRadius.circular(10),
         ),
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(15),
         padding: EdgeInsets.all(10),
-        height: 200,
-        width: 300,
+        height: isLandscape ? height * 0.5 : height * 0.25,
+        width: isLandscape ? (width * 0.5 - 30) : width,
         child: child);
   }
 
@@ -37,34 +43,10 @@ class MealDetail extends StatelessWidget {
     final mealId = ModalRoute.of(context)?.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     var accentColor = Theme.of(context).accentColor;
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(selectedMeal.title),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Provider.of<MealProvider>(context).isMealFavorite(mealId)
-              ? Icons.star
-              : Icons.star_border,
-        ),
-        onPressed: () => Provider.of<MealProvider>(context, listen: false)
-            .toggleFavorite(mealId),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: Image.network(
-                selectedMeal.imageUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
-            buildSectionTitle(context, "Ingredients"),
-            buildContainer(
-              child: ListView.builder(
+var lvIngredients = ListView.builder(
                 itemCount: selectedMeal.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
@@ -79,11 +61,9 @@ class MealDetail extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-            ),
-            buildSectionTitle(context, "Steps"),
-            buildContainer(
-              child: ListView.builder(
+              );
+
+    var lvSteps = ListView.builder(
                 itemCount: selectedMeal.steps.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
@@ -108,8 +88,59 @@ class MealDetail extends StatelessWidget {
                     ],
                   );
                 },
+              );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(selectedMeal.title),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Provider.of<MealProvider>(context).isMealFavorite(mealId)
+              ? Icons.star
+              : Icons.star_border,
+        ),
+        onPressed: () => Provider.of<MealProvider>(context, listen: false)
+            .toggleFavorite(mealId),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Hero(
+                tag: mealId,
+                child: Image.network(
+                  selectedMeal.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      buildSectionTitle(context, "Ingredients"),
+                      buildContainer(child: lvIngredients, context: context),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      buildSectionTitle(context, "Steps"),
+                      buildContainer(child: lvSteps, context: context),
+                    ],
+                  )
+                ],
+            ),
+            if (!isLandscape) buildSectionTitle(context, "Ingredients"),
+            if (!isLandscape)
+              buildContainer(child: lvIngredients, context: context),
+            if (!isLandscape) buildSectionTitle(context, "Steps"),
+            if (!isLandscape) buildContainer(child: lvSteps, context: context),
+           
           ],
         ),
       ),
