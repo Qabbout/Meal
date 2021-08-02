@@ -111,8 +111,16 @@ class ThemesScreen extends StatelessWidget {
               buildListTile(context, "accent"),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      fixedSize: MaterialStateProperty.all<Size>(
+                          Size(double.infinity, 40))),
                   onPressed: () {
                     Provider.of<ThemeProvider>(context, listen: false)
                         .resetThemeToDefault();
