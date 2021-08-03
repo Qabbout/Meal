@@ -1,16 +1,21 @@
-# meal
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Qabbout/Meal)
 
-A new Flutter project.
+# Meal 
 
-## Getting Started
+Recipes application with ingredients and steps,built with Flutter 2.
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div align="center">
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S1.png" width="250">
+<img width= "20">
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S2.png" width="250">
+<img width= "20">
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S3.png" width="250">
+<br>
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S4.png" width="250">
+<img width= "20">
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S5.png" width="250">
+<img width= "20">
+<img src="https://github.com/Qabbout/Meal/blob/master/screenshots/S6.png" width="250">
+</div>
