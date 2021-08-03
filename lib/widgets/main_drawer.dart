@@ -52,32 +52,39 @@ class MainDrawer extends StatelessWidget {
             height: 20,
           ),
           buildListTile(
-            icon: Icons.restaurant,
-            title: "Meal",
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/');
-            },
-            context: context
-          ),
-          
+              icon: Icons.restaurant,
+              title: "Meal",
+              onTap: () {
+                if (ModalRoute.of(context)?.settings.name != '/')
+                  Navigator.of(context).pushReplacementNamed('/');
+                else
+                  Navigator.of(context).pop();
+              },
+              context: context),
           buildListTile(
-            context: context,
+              context: context,
               icon: Icons.settings,
               title: "Filters",
               onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(FiltersScreen.routeName);
+                if (ModalRoute.of(context)?.settings.name !=
+                    FiltersScreen.routeName)
+                  Navigator.of(context)
+                      .pushReplacementNamed(FiltersScreen.routeName);
+                else
+                  Navigator.of(context).pop();
               }),
-              buildListTile(
+          buildListTile(
               context: context,
               icon: Icons.color_lens,
               title: "Themes",
               onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(ThemesScreen.routeName);
+                if (ModalRoute.of(context)?.settings.name !=
+                    ThemesScreen.routeName)
+                  Navigator.of(context)
+                      .pushReplacementNamed(ThemesScreen.routeName);
+                else
+                  Navigator.of(context).pop();
               }),
-              
-              
         ],
       ),
     );
