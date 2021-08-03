@@ -2,7 +2,7 @@
 
 # Meal 
 
-Recipes application with ingredients and steps,built with Flutter 2.
+Recipes application with ingredients and steps, built with Flutter 2.
 
 ## Screenshots
 
