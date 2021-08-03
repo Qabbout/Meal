@@ -112,12 +112,14 @@ var lvIngredients = ListView.builder(
               title: Text(selectedMeal.title),
               background: Hero(
                 tag: mealId,
-                child: InteractiveViewer(
-                  child: FadeInImage.assetNetwork(
-                    image: selectedMeal.imageUrl,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    placeholder: '/assets/loading.gif',
+                child: IgnorePointer(
+                  child: InteractiveViewer(
+                    child: FadeInImage.assetNetwork(
+                      image: selectedMeal.imageUrl,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      placeholder: 'assets/loading.gif',
+                    ),
                   ),
                 ),
               ),
