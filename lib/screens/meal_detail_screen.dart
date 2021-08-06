@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:meal/dummy_data.dart';
 import 'package:meal/providers/meal_provider.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,10 @@ var lvIngredients = ListView.builder(
                           vertical: 5, horizontal: 10),
                       child: Text(
                         selectedMeal.ingredients[index],
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                  color: useWhiteForeground(accentColor)
+                      ? Colors.white
+                      : Colors.black),
                       ),
                     ),
                   );
